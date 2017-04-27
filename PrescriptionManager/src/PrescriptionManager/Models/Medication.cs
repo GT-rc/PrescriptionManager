@@ -7,7 +7,7 @@ namespace PrescriptionManager.Models
 {
     public class Medication
     {
-        public int ID { get; set; }
+        public int MedID { get; set; }
         public string Name { get; set; }
         public int Dosage { get; set; }
         public string Notes { get; set; }

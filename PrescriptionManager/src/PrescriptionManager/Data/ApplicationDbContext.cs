@@ -10,6 +10,11 @@ namespace PrescriptionManager.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Medication> Medication { get; set; }
+        public DbSet<MedSets> MedSets { get; set; }
+        public DbSet<Set> Set { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -21,6 +26,8 @@ namespace PrescriptionManager.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.Entity<MedSets>().HasKey(c => new { c.UserID, c.SetID });
         }
     }
 }
