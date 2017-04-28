@@ -1,0 +1,30 @@
+﻿@model PrescriptionManager.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Medication Home";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr>
+        <th>Medication Name</th>
+        <th>Dosage</th>
+        <th>Times Taken Per Day</th>
+    </tr>
+
+    @foreach (Medication item in Model.AllMeds)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Dosage</td>
+            <td>@item.TimesXDay</td>
+        </tr>
+    }
+</table>
+
+@if (Model.AllMeds.Count == 0)
+{
+    <p>No Medications Yet!</p>
+}
+
+<a asp-controller="Medication" asp-action="Add">Add a Medication</a>

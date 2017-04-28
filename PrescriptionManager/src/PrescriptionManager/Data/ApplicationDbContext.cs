@@ -10,7 +10,7 @@ namespace PrescriptionManager.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<ApplicationUser> Users { get; set; }
+        public new DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Medication> Medication { get; set; }
         public DbSet<MedSets> MedSets { get; set; }
         public DbSet<Set> Set { get; set; }
