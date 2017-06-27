@@ -3,18 +3,58 @@
 @{
     ViewData["Title"] = "Add New Medication";
 }
-<h2>@ViewData["Title"]</h2>
+<h2>Add A New Medication</h2>
 
 <p>Coming Soon</p>
 
-<form>
+<form asp-controller="Medication" asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Dosage"></label>
+        <input class="form-control" asp-for="Dosage" />
+        <span asp-validation-for="Dosage"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TimesXDay"></label>
+        <input class="form-control" asp-for="TimesXDay" />
+        <span asp-validation-for="TimesXDay"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ToDID"></label>
+        <select asp-for="ToDID" asp-items="Model.ToDay" ></select>
+        <input type="hidden" asp-for="ToDID" />
+        <span asp-validation-for="ToDID"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RefillRate"></label>
+        <input class="form-control" asp-for="RefillRate" />
+        <span asp-validation-for="RefillRate"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes"></label>
+        <input class="form-control" asp-for="Notes" />
+        <span asp-validation-for="Notes"></span>
+    </div>
 
 
 
 
-
-
-
-
+    <input type="submit" value="Add Medication" />
 
 </form>

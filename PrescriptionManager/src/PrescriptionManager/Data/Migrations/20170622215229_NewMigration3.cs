@@ -5,18 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PrescriptionManager.Data.Migrations
 {
-    public partial class UpdatedModels1 : Migration
+    public partial class NewMigration3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Medication",
-                table: "Medication");
-
-            migrationBuilder.DropColumn(
-                name: "ID",
-                table: "Medication");
-
             migrationBuilder.CreateTable(
                 name: "Set",
                 columns: table => new
@@ -34,44 +26,44 @@ namespace PrescriptionManager.Data.Migrations
                 name: "MedSets",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(nullable: false),
-                    SetID = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
+                    SetId = table.Column<int>(nullable: false),
                     ID = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MedSets", x => new { x.UserID, x.SetID });
+                    table.PrimaryKey("PK_MedSets", x => new { x.UserId, x.SetId });
                     table.ForeignKey(
-                        name: "FK_MedSets_Set_SetID",
-                        column: x => x.SetID,
+                        name: "FK_MedSets_Set_SetId",
+                        column: x => x.SetId,
                         principalTable: "Set",
                         principalColumn: "SetID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedSets_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_MedSets_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.AddColumn<int>(
-                name: "MedID",
+                name: "RefillRate",
                 table: "Medication",
                 nullable: false,
-                defaultValue: 0)
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "SetID",
                 table: "Medication",
                 nullable: true);
 
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Medication",
+            migrationBuilder.AddColumn<int>(
+                name: "UserID",
                 table: "Medication",
-                column: "MedID");
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medication_SetID",
@@ -79,14 +71,14 @@ namespace PrescriptionManager.Data.Migrations
                 column: "SetID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedSets_SetID",
+                name: "IX_MedSets_SetId",
                 table: "MedSets",
-                column: "SetID");
+                column: "SetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedSets_UserId",
+                name: "IX_MedSets_UserId1",
                 table: "MedSets",
-                column: "UserId");
+                column: "UserId1");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Medication_Set_SetID",
@@ -103,20 +95,20 @@ namespace PrescriptionManager.Data.Migrations
                 name: "FK_Medication_Set_SetID",
                 table: "Medication");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Medication",
-                table: "Medication");
-
             migrationBuilder.DropIndex(
                 name: "IX_Medication_SetID",
                 table: "Medication");
 
             migrationBuilder.DropColumn(
-                name: "MedID",
+                name: "RefillRate",
                 table: "Medication");
 
             migrationBuilder.DropColumn(
                 name: "SetID",
+                table: "Medication");
+
+            migrationBuilder.DropColumn(
+                name: "UserID",
                 table: "Medication");
 
             migrationBuilder.DropTable(
@@ -124,18 +116,6 @@ namespace PrescriptionManager.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Set");
-
-            migrationBuilder.AddColumn<int>(
-                name: "ID",
-                table: "Medication",
-                nullable: false,
-                defaultValue: 0)
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Medication",
-                table: "Medication",
-                column: "ID");
         }
     }
 }

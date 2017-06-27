@@ -9,10 +9,10 @@ namespace PrescriptionManager.Models
     {
         public int ID { get; set; }
 
-        public int SetID { get; set; }
+        public int SetId { get; set; }
         public Set MedSet { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         public ApplicationUser User { get; set; }
 
     }

@@ -27,7 +27,7 @@ namespace PrescriptionManager.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
-            builder.Entity<MedSets>().HasKey(c => new { c.UserID, c.SetID });
+            builder.Entity<MedSets>().HasKey(c => new { c.UserId, c.SetId });
         }
     }
 }

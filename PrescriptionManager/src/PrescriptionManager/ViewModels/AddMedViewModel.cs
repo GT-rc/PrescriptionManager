@@ -25,6 +25,8 @@ namespace PrescriptionManager.ViewModels
 
         public string Notes { get; set; }
 
+        public int RefillRate { get; set; }
+
         public string Description { get; set; }
 
         [Required]
@@ -32,6 +34,8 @@ namespace PrescriptionManager.ViewModels
         public int ToDID { get; set; }
 
         public List<SelectListItem> ToDay { get; set; }
+
+        public ToD SelectedTime { get; set; }
 
         public AddMedViewModel() : base() { }
 

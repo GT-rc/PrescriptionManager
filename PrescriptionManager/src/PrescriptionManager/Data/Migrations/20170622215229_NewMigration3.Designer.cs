@@ -8,8 +8,8 @@ using PrescriptionManager.Data;
 namespace PrescriptionManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170428061917_UpdatedModels1")]
-    partial class UpdatedModels1
+    [Migration("20170622215229_NewMigration3")]
+    partial class NewMigration3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -179,7 +179,7 @@ namespace PrescriptionManager.Data.Migrations
 
             modelBuilder.Entity("PrescriptionManager.Models.Medication", b =>
                 {
-                    b.Property<int>("MedID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApplicationUserId");
@@ -192,13 +192,17 @@ namespace PrescriptionManager.Data.Migrations
 
                     b.Property<string>("Notes");
 
+                    b.Property<int>("RefillRate");
+
                     b.Property<int?>("SetID");
 
                     b.Property<int>("TimeOfDay");
 
                     b.Property<int>("TimesXDay");
 
-                    b.HasKey("MedID");
+                    b.Property<int>("UserID");
+
+                    b.HasKey("ID");
 
                     b.HasIndex("ApplicationUserId");
 
@@ -209,19 +213,19 @@ namespace PrescriptionManager.Data.Migrations
 
             modelBuilder.Entity("PrescriptionManager.Models.MedSets", b =>
                 {
-                    b.Property<int>("UserID");
+                    b.Property<int>("UserId");
 
-                    b.Property<int>("SetID");
+                    b.Property<int>("SetId");
 
                     b.Property<int>("ID");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId1");
 
-                    b.HasKey("UserID", "SetID");
+                    b.HasKey("UserId", "SetId");
 
-                    b.HasIndex("SetID");
+                    b.HasIndex("SetId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("MedSets");
                 });
@@ -290,12 +294,12 @@ namespace PrescriptionManager.Data.Migrations
                 {
                     b.HasOne("PrescriptionManager.Models.Set", "MedSet")
                         .WithMany()
-                        .HasForeignKey("SetID")
+                        .HasForeignKey("SetId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PrescriptionManager.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
         }
     }

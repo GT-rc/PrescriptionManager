@@ -54,6 +54,9 @@ namespace PrescriptionManager
 
             services.AddMvc();
 
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=aspnet-PrescriptionManager-c87cc88a-243c-44e8-a2aa-90c5ef951aa0;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();

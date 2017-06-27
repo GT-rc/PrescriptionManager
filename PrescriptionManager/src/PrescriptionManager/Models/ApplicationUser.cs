@@ -10,8 +10,8 @@ namespace PrescriptionManager.Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        public List<Medication> AllMeds { get; set; }
-        public PermissionLevel PermissionLevel { get; set; }
+        public List<Medication> AllMeds { get; set; } = new List<Medication>();
+        public PermissionLevel PermissionLevel { get; set; } = PermissionLevel.User;
 
     }
 }
