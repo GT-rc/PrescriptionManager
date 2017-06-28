@@ -19,6 +19,8 @@
         <th>Times Taken Per Day</th>
         <th>Time of Day Taken</th>
         <th>Refill After (Days)</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (Medication item in Model)
@@ -37,4 +39,3 @@
 
 }
 
-Done for today? <a asp-controller="Account" asp-action="LogOff">Logout</a>

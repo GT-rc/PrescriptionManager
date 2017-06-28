@@ -15,10 +15,10 @@ namespace PrescriptionManager.Models
         public int Dosage { get; set; }
         public string Notes { get; set; }
         public int TimesXDay { get; set; }
-        public int TimeOfDay { get; set; }
+        public ToD TimeOfDay { get; set; }
         public string Description { get; set; }
         public int RefillRate { get; set; }
-
-        public int UserID { get; set; }
+        [Required]
+        public string UserID { get; set; }
     }
 }

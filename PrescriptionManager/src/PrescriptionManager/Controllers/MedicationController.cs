@@ -30,12 +30,14 @@ namespace PrescriptionManager.Controllers
             {
                 var userName = User.Identity.Name;
                 userLoggedIn = context.Users.Single(c => c.UserName == userName);
+
             } else
             {
                 return Redirect("/");
             }
 
-            IList<Medication> userMeds = userLoggedIn.AllMeds;
+            IList<Medication> userMeds = context.Medication.Where(c => c.UserID == userLoggedIn.Id).ToList();
+            //IList<Medication> userMeds = userLoggedIn.AllMeds;
 
             return View(userMeds);
         }
@@ -43,7 +45,7 @@ namespace PrescriptionManager.Controllers
         // To Add a new medication to your list.
         public IActionResult Add()
         {
-            // TODO: List<ToD> times = query for the list of ToD's and pass into the view model
+            // query for the list of ToD's and pass into the view model
             IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
             
             AddMedViewModel addMedViewModel = new AddMedViewModel(times);
@@ -57,8 +59,8 @@ namespace PrescriptionManager.Controllers
             string user = User.Identity.Name;
             ApplicationUser userLoggedIn = context.Users.Single(c => c.UserName == user);
 
-            //var time = addMedViewModel.ToDID;
-            //ToD chosenTime = ;
+            // Looked for this code for a long time, and thought I didn't use it, I wanted it written down...
+            // var time = (ToD)System.Enum.Parse(typeof(ToD), addMedViewModel.SelectedTime);
 
             if (ModelState.IsValid)
             {
@@ -68,16 +70,17 @@ namespace PrescriptionManager.Controllers
                     Dosage = addMedViewModel.Dosage,
                     TimesXDay = addMedViewModel.TimesXDay,
                     Notes = addMedViewModel.Notes,
-                    TimeOfDay = addMedViewModel.ToDID,
-                    // TODO: will need to look up value of tod id
+                    TimeOfDay = addMedViewModel.SelectedTime,
+                    // TODO: Make it possible to select more than one tod
                     Description = addMedViewModel.Description,
-                    RefillRate = addMedViewModel.RefillRate
+                    RefillRate = addMedViewModel.RefillRate,
+                    UserID = userLoggedIn.Id
                 };
 
-                // TODO: add to db and user list
+                // add to db and user list
                 context.Medication.Add(newMed);
                 userLoggedIn.AllMeds.Add(newMed);
-                // TODO: save changes
+                // save changes
                 context.SaveChanges();
 
                 return Redirect("/Medication/Index");
