@@ -20,7 +20,7 @@
         <th>Time of Day Taken</th>
         <th>Refill After (Days)</th>
         <th>Edit</th>
-        <th>Delete</th>
+        
     </tr>
 
     @foreach (Medication item in Model)
@@ -32,10 +32,11 @@
             <td>@item.TimeOfDay</td>
             <td>@item.RefillRate</td>
             <td><a asp-controller="Medication" asp-action="Edit" asp-route-id="@item.ID">Edit Medication</a></td>
-            <td><a asp-controller="Medication" asp-action="Remove" asp-route-id="@item.ID">Remove Medication</a></td>
+            
         </tr>
     }
 </table>
 
+<h4><a asp-controller="Medication" asp-action="Remove" >Remove Medication</a></h4>
 }
 

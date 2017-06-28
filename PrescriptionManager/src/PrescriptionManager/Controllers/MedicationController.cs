@@ -88,28 +88,37 @@ namespace PrescriptionManager.Controllers
 
             return View(addMedViewModel);
         }
-        /*
+        
         public IActionResult Remove()
         {
-            ViewBag.meds = 0;
-            // TODO: query db for list of all users meds, pass into ViewBag
+            string user = User.Identity.Name;
+            ApplicationUser userLoggedIn = context.Users.Single(c => c.UserName == user);
+
+            // query db for list of all users meds, pass into view
+            ViewBag.meds = context.Medication.Where(c => c.UserID == userLoggedIn.Id).ToList();
+            
             return View();
         }
-
-        [HttpPost]
+        
+        [HttpPost] 
         public IActionResult Remove(int[] medIds)
         {
+            string user = User.Identity.Name;
+            ApplicationUser userLoggedIn = context.Users.Single(c => c.UserName == user);
+
             foreach (int id in medIds)
             {
-                // TODO: find med in list
-                // TODO: remove med from list
+                // find med
+                Medication medToRemove = context.Medication.Single(c => c.ID == id);
+                // delete med
+                context.Medication.Remove(medToRemove);
+                // save changes
+                context.SaveChanges();
             }
 
-            // TODO: save changes
-
-            return Redirect("Medication/Index");
+            return Redirect("/Medication/Index");
         }
-
+        /*
         public IActionResult Edit(int id)
         {
             Medication med = context.Medication.Single(c => c.MedID == id);
