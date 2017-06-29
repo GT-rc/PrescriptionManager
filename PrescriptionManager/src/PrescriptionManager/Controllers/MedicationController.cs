@@ -133,8 +133,7 @@ namespace PrescriptionManager.Controllers
         public IActionResult EditPost(int id, EditMedViewModel editMedViewModel)
         {
             Medication editedMed = context.Medication.Single(c => c.ID == id);
-            // error is here -- editedMed is returning null
-
+            
             editedMed.Name = editMedViewModel.Med.Name;
             editedMed.Dosage = editMedViewModel.Med.Dosage;
             editedMed.Notes = editMedViewModel.Med.Notes;
@@ -148,7 +147,7 @@ namespace PrescriptionManager.Controllers
             context.Medication.Update(editedMed);
             context.SaveChanges();
 
-            return Redirect("Medication/Index");
+            return Redirect("/Medication/Index");
         }
         
         // TODO: Create methods and logic for printing out list of meds.
