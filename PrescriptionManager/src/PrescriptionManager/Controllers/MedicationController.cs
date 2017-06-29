@@ -13,7 +13,7 @@ namespace PrescriptionManager.Controllers
 {
     public class MedicationController : Controller
     {
-        // TODO: set up db context
+        // set up db context
         private readonly ApplicationDbContext context;
 
         public MedicationController(ApplicationDbContext dbContext)
@@ -118,33 +118,39 @@ namespace PrescriptionManager.Controllers
 
             return Redirect("/Medication/Index");
         }
-        /*
+        
         public IActionResult Edit(int id)
         {
-            Medication med = context.Medication.Single(c => c.MedID == id);
-            
-            EditMedViewModel editMedViewModel = new EditMedViewModel(med);
+            Medication med = context.Medication.Single(c => c.ID == id);
+
+            IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
+
+            EditMedViewModel editMedViewModel = new EditMedViewModel(med, times);
             return View(editMedViewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(int medId, EditMedViewModel editMedViewModel)
+        public IActionResult EditPost(int id, EditMedViewModel editMedViewModel)
         {
-            Medication editedMed = context.Medication.Single(c => c.MedID == medId);
+            Medication editedMed = context.Medication.Single(c => c.ID == id);
+            // error is here -- editedMed is returning null
 
             editedMed.Name = editMedViewModel.Med.Name;
             editedMed.Dosage = editMedViewModel.Med.Dosage;
             editedMed.Notes = editMedViewModel.Med.Notes;
             editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
-            editedMed.TimeOfDay = editMedViewModel.Med.TimeOfDay;
+            editedMed.TimeOfDay = editMedViewModel.SelectedTime;
+            // TODO: make it possible to select more than one time
             editedMed.Description = editMedViewModel.Med.Description;
             editedMed.RefillRate = editMedViewModel.Med.RefillRate;
 
-            // TODO: update change and save to db
+            // update change and save to db
+            context.Medication.Update(editedMed);
+            context.SaveChanges();
 
             return Redirect("Medication/Index");
         }
-        */
+        
         // TODO: Create methods and logic for printing out list of meds.
     }
 }

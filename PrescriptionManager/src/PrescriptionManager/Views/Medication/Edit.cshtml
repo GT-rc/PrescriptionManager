@@ -3,17 +3,58 @@
 @{
     ViewData["Title"] = "Edit A Medication";
 }
-<h2>@ViewData["Title"]</h2>
+<h1>Edit Your Medication: @Model.Med.Name</h1>
 
 <p>Coming Soon</p>
 
-<form>
+<form asp-controller="Medication" asp-action="EditPost" method="post">
 
+    <div class="form-group">
+        <label asp-for="@Model.Med.Name"></label>
+        <input class="form-control" asp-for="@Model.Med.Name" />
+        <span asp-validation-for="@Model.Med.Name"></span>
+    </div>
 
-
-
+    <div class="form-group">
+        <label asp-for="@Model.Med.Dosage"></label>
+        <input class="form-control" asp-for="@Model.Med.Dosage" />
+        <span asp-validation-for="@Model.Med.Dosage"></span>
+    </div>
     
+    <div class="form-group">
+        <label asp-for="@Model.Med.TimesXDay"></label>
+        <input class="form-control" asp-for="@Model.Med.TimesXDay" />
+        <span asp-validation-for="@Model.Med.TimesXDay"></span>
+    </div>
 
+    <div class="form-group">
+        <label asp-for="@Model.Med.TimeOfDay"></label>
+        <select asp-for="@Model.SelectedTime" asp-items="@Model.Times"></select>
+        <span asp-validation-for="@Model.Med.TimeOfDay"></span>
+    </div>
 
+    <div class="form-group">
+        <label asp-for="@Model.Med.Description"></label>
+        <input class="form-control" asp-for="@Model.Med.Description" />
+        <span asp-validation-for="@Model.Med.Description"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Med.RefillRate"></label>
+        <input class="form-control" asp-for="@Model.Med.RefillRate" />
+        <span asp-validation-for="@Model.Med.RefillRate"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Med.Notes"></label>
+        <input class="form-control" asp-for="@Model.Med.Notes" />
+        <span asp-validation-for="@Model.Med.Notes"></span>
+    </div>
+
+    <input type="hidden" value="@Model.Med.UserID" asp-for="@Model.Med.UserID" />
+
+    <input type="hidden" value="@Model.Med.ID" asp-for="@Model.MedId" />
+
+    <input type="submit" value="Update Medication" />
 
 </form>

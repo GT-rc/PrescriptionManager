@@ -1,4 +1,5 @@
-﻿using PrescriptionManager.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PrescriptionManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,11 +15,26 @@ namespace PrescriptionManager.ViewModels
 
         public Medication Med { get; set; }
 
+        public List<SelectListItem> Times { get; set; }
+
+        public ToD SelectedTime { get; set; }
+
         public EditMedViewModel() : base() { }
 
-        public EditMedViewModel(Medication med)
+        public EditMedViewModel(Medication med, IEnumerable<ToD> times)
         {
             Med = med;
+
+            Times = new List<SelectListItem>();
+
+            foreach (ToD time in times)
+            {
+                Times.Add(new SelectListItem
+                {
+                    Value = time.ToString(),
+                    Text = time.ToString()
+                });
+            }
         }
     }
 }
