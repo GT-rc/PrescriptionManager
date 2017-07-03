@@ -12,7 +12,7 @@ namespace PrescriptionManager.Data
     {
         public new DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Medication> Medication { get; set; }
-        public DbSet<MedSets> MedSets { get; set; }
+        public DbSet<UserMeds> UserMeds { get; set; }
         public DbSet<Set> Set { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -27,7 +27,9 @@ namespace PrescriptionManager.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
-            builder.Entity<MedSets>().HasKey(c => new { c.UserId, c.SetId });
+            builder.Entity<UserMeds>().HasKey(c => new { c.UserId, c.MedID });
+
+            // builder.Entity<Set>().HasKey(c => new { c.UserMedID, c.TimeOfDay });
         }
     }
 }

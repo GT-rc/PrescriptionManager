@@ -10,6 +10,7 @@ namespace PrescriptionManager.Models
         public int SetID { get; set; }
         public List<Medication> MedList { get; set; }
         public ToD TimeOfDay { get; set; }
+        public UserMeds UserMedID { get; set; }
 
     }
 }

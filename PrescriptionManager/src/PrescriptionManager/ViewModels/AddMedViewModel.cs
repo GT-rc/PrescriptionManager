@@ -29,6 +29,12 @@ namespace PrescriptionManager.ViewModels
 
         public string Description { get; set; }
 
+        public string PrescribingDoctor { get; set; }
+
+        public int ScripNumber { get; set; }
+
+        public string Pharmacy { get; set; }
+
         [Required]
         [Display(Name = "Time of Day Taken")]
         public int ToDID { get; set; }

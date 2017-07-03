@@ -8,9 +8,10 @@ using PrescriptionManager.Data;
 namespace PrescriptionManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170703073821_AddedVariable")]
+    partial class AddedVariable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -191,15 +192,7 @@ namespace PrescriptionManager.Data.Migrations
 
                     b.Property<string>("Notes");
 
-                    b.Property<string>("Pharmacy");
-
-                    b.Property<int>("PillsPerDose");
-
-                    b.Property<string>("PrescribingDoctor");
-
                     b.Property<int>("RefillRate");
-
-                    b.Property<int>("ScripNumber");
 
                     b.Property<int?>("SetID");
 
@@ -219,6 +212,25 @@ namespace PrescriptionManager.Data.Migrations
                     b.ToTable("Medication");
                 });
 
+            modelBuilder.Entity("PrescriptionManager.Models.MedSets", b =>
+                {
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("SetId");
+
+                    b.Property<int>("ID");
+
+                    b.Property<string>("UserId1");
+
+                    b.HasKey("UserId", "SetId");
+
+                    b.HasIndex("SetId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("MedSets");
+                });
+
             modelBuilder.Entity("PrescriptionManager.Models.Set", b =>
                 {
                     b.Property<int>("SetID")
@@ -226,36 +238,9 @@ namespace PrescriptionManager.Data.Migrations
 
                     b.Property<int>("TimeOfDay");
 
-                    b.Property<int?>("UserMedIDMedID");
-
-                    b.Property<int?>("UserMedIDUserId");
-
                     b.HasKey("SetID");
 
-                    b.HasIndex("UserMedIDUserId", "UserMedIDMedID");
-
                     b.ToTable("Set");
-                });
-
-            modelBuilder.Entity("PrescriptionManager.Models.UserMeds", b =>
-                {
-                    b.Property<int>("UserId");
-
-                    b.Property<int>("MedID");
-
-                    b.Property<int?>("MedicationID");
-
-                    b.Property<string>("UserId1");
-
-                    b.Property<int>("UserMedID");
-
-                    b.HasKey("UserId", "MedID");
-
-                    b.HasIndex("MedicationID");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("UserMeds");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -306,18 +291,12 @@ namespace PrescriptionManager.Data.Migrations
                         .HasForeignKey("SetID");
                 });
 
-            modelBuilder.Entity("PrescriptionManager.Models.Set", b =>
+            modelBuilder.Entity("PrescriptionManager.Models.MedSets", b =>
                 {
-                    b.HasOne("PrescriptionManager.Models.UserMeds", "UserMedID")
+                    b.HasOne("PrescriptionManager.Models.Set", "MedSet")
                         .WithMany()
-                        .HasForeignKey("UserMedIDUserId", "UserMedIDMedID");
-                });
-
-            modelBuilder.Entity("PrescriptionManager.Models.UserMeds", b =>
-                {
-                    b.HasOne("PrescriptionManager.Models.Medication", "Medication")
-                        .WithMany()
-                        .HasForeignKey("MedicationID");
+                        .HasForeignKey("SetId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PrescriptionManager.Models.ApplicationUser", "User")
                         .WithMany()

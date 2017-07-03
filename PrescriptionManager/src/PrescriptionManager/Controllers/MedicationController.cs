@@ -74,6 +74,9 @@ namespace PrescriptionManager.Controllers
                     // TODO: Make it possible to select more than one tod
                     Description = addMedViewModel.Description,
                     RefillRate = addMedViewModel.RefillRate,
+                    PrescribingDoctor = addMedViewModel.PrescribingDoctor,
+                    ScripNumber = addMedViewModel.ScripNumber,
+                    Pharmacy = addMedViewModel.Pharmacy,
                     UserID = userLoggedIn.Id
                 };
 
@@ -139,9 +142,12 @@ namespace PrescriptionManager.Controllers
             editedMed.Notes = editMedViewModel.Med.Notes;
             editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
             editedMed.TimeOfDay = editMedViewModel.SelectedTime;
-            // TODO: make it possible to select more than one time
             editedMed.Description = editMedViewModel.Med.Description;
             editedMed.RefillRate = editMedViewModel.Med.RefillRate;
+            // TODO: add new feilds in here and in view and vm
+            editedMed.Pharmacy = editMedViewModel.Pharmacy;
+            editedMed.PrescribingDoctor = editMedViewModel.PrescribingDoctor;
+            editedMed.ScripNumber = editMedViewModel.ScripNumber;
 
             // update change and save to db
             context.Medication.Update(editedMed);
