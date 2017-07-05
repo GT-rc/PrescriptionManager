@@ -42,6 +42,15 @@ namespace PrescriptionManager.Controllers
             return View(userMeds);
         }
 
+        // To view a medication
+        public IActionResult View(int id)
+        {
+            Medication medToView = context.Medication.Single(c => c.ID == id);
+            ViewBag.med = medToView;
+
+            return View();
+        }
+
         // To Add a new medication to your list.
         public IActionResult Add()
         {
@@ -68,15 +77,15 @@ namespace PrescriptionManager.Controllers
                 {
                     Name = addMedViewModel.Name,
                     Dosage = addMedViewModel.Dosage,
-                    TimesXDay = addMedViewModel.TimesXDay,
+                    //TimesXDay = addMedViewModel.TimesXDay,
                     Notes = addMedViewModel.Notes,
                     TimeOfDay = addMedViewModel.SelectedTime,
-                    // TODO: Make it possible to select more than one tod
                     Description = addMedViewModel.Description,
                     RefillRate = addMedViewModel.RefillRate,
                     PrescribingDoctor = addMedViewModel.PrescribingDoctor,
                     ScripNumber = addMedViewModel.ScripNumber,
                     Pharmacy = addMedViewModel.Pharmacy,
+                    PillsPerDose = addMedViewModel.PillsPerDose,
                     UserID = userLoggedIn.Id
                 };
 
@@ -140,14 +149,14 @@ namespace PrescriptionManager.Controllers
             editedMed.Name = editMedViewModel.Med.Name;
             editedMed.Dosage = editMedViewModel.Med.Dosage;
             editedMed.Notes = editMedViewModel.Med.Notes;
-            editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
+            //editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
             editedMed.TimeOfDay = editMedViewModel.SelectedTime;
             editedMed.Description = editMedViewModel.Med.Description;
             editedMed.RefillRate = editMedViewModel.Med.RefillRate;
-            // TODO: add new feilds in here and in view and vm
-            editedMed.Pharmacy = editMedViewModel.Pharmacy;
-            editedMed.PrescribingDoctor = editMedViewModel.PrescribingDoctor;
-            editedMed.ScripNumber = editMedViewModel.ScripNumber;
+            editedMed.Pharmacy = editMedViewModel.Med.Pharmacy;
+            editedMed.PrescribingDoctor = editMedViewModel.Med.PrescribingDoctor;
+            editedMed.ScripNumber = editMedViewModel.Med.ScripNumber;
+            editedMed.PillsPerDose = editMedViewModel.Med.PillsPerDose;
 
             // update change and save to db
             context.Medication.Update(editedMed);

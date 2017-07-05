@@ -14,13 +14,15 @@ namespace PrescriptionManager.ViewModels
         public int MedId { get; set; }
 
         public Medication Med { get; set; }
-
+        /*
         public int ScripNumber { get; set; }
+
+        public int PillsPerDose { get; set; }
 
         public string PrescribingDoctor { get; set; }
 
         public string Pharmacy { get; set; }
-
+        */
         public List<SelectListItem> Times { get; set; }
 
         public ToD SelectedTime { get; set; }

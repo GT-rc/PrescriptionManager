@@ -20,11 +20,29 @@
         <input class="form-control" asp-for="@Model.Med.Dosage" />
         <span asp-validation-for="@Model.Med.Dosage"></span>
     </div>
-    
+
     <div class="form-group">
-        <label asp-for="@Model.Med.TimesXDay"></label>
-        <input class="form-control" asp-for="@Model.Med.TimesXDay" />
-        <span asp-validation-for="@Model.Med.TimesXDay"></span>
+        <label asp-for="@Model.Med.PillsPerDose"></label>
+        <input class="form-control" asp-for="@Model.Med.PillsPerDose" />
+        <span asp-validation-for="@Model.Med.PillsPerDose"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Med.PrescribingDoctor"></label>
+        <input class="form-control" asp-for="@Model.Med.PrescribingDoctor" />
+        <span asp-validation-for="@Model.Med.PrescribingDoctor"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Med.Pharmacy"></label>
+        <input class="form-control" asp-for="@Model.Med.Pharmacy" />
+        <span asp-validation-for="@Model.Med.Pharmacy"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Med.ScripNumber"></label>
+        <input class="form-control" asp-for="@Model.Med.ScripNumber" />
+        <span asp-validation-for="@Model.Med.ScripNumber"></span>
     </div>
 
     <div class="form-group">

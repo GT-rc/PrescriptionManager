@@ -19,10 +19,12 @@ namespace PrescriptionManager.ViewModels
         [Display(Name = "Dosage")]
         public int Dosage { get; set; }
 
+        public int PillsPerDose { get; set; }
+        /*
         [Required]
         [Display(Name = "Number of Times per Day Taken")]
         public int TimesXDay { get; set; }
-
+        */
         public string Notes { get; set; }
 
         public int RefillRate { get; set; }

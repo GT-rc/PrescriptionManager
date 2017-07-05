@@ -16,7 +16,7 @@
     <tr>
         <th>Medication</th>
         <th>Dosage</th>
-        <th>Times Taken Per Day</th>
+        <th>N/A</th>
         <th>Time of Day Taken</th>
         <th>Refill After (Days)</th>
         <th>Edit</th>
@@ -26,9 +26,9 @@
     @foreach (Medication item in Model)
     {
         <tr>
-            <td>@item.Name</td>
+            <td><a asp-controller="Medication" asp-action="View" asp-route-id="@item.ID">@item.Name</a></td>
             <td>@item.Dosage</td>
-            <td>@item.TimesXDay</td>
+            <td>what what??!!</td>
             <td>@item.TimeOfDay</td>
             <td>@item.RefillRate</td>
             <td><a asp-controller="Medication" asp-action="Edit" asp-route-id="@item.ID">Edit Medication</a></td>
