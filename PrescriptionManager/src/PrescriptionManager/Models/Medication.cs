@@ -12,16 +12,30 @@ namespace PrescriptionManager.Models
         public int ID { get; set; }
 
         public string Name { get; set; }
+
+        [Range(minimum:0, maximum:100)]
         public int Dosage { get; set; }
+
         public string Notes { get; set; }
+
         // public int TimesXDay { get; set; }
+
+        [Range(minimum: 0, maximum: 100)]
         public int PillsPerDose { get; set; }
+
         public ToD TimeOfDay { get; set; }
+
         public string Description { get; set; }
+
+        [Range(minimum: 0, maximum: 1000)]
         public int RefillRate { get; set; }  // number of pills in the bottle
+
         public string PrescribingDoctor { get; set; }
-        public int ScripNumber { get; set; }
+
+        public string ScripNumber { get; set; }
+
         public string Pharmacy { get; set; }
+
         [Required]
         public string UserID { get; set; }
 
