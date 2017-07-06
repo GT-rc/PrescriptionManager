@@ -25,7 +25,7 @@ namespace PrescriptionManager.Models
         [Required]
         public string UserID { get; set; }
 
-
+        /*
         public override string ToString()
         {
             System.Text.StringBuilder medString = new System.Text.StringBuilder();
@@ -34,6 +34,7 @@ namespace PrescriptionManager.Models
             medString.Append(Environment.NewLine);
             medString.Append($"\r\tDosage: {Dosage}\r\n" + Environment.NewLine);
             medString.AppendLine($"\r\tPills in Dose: {PillsPerDose}\r\n");
+            medString.Append("<br />");
             medString.Append($"\r\tTime of Day Taken: {TimeOfDay}\r\n");
             medString.Append($"\r\tPrescribing Doctor: {PrescribingDoctor}\r\n");
             medString.Append($"\r\tPharmacy: {Pharmacy}\r\n");
@@ -44,6 +45,6 @@ namespace PrescriptionManager.Models
             string myString = medString.ToString();
 
             return myString;
-        }  
+        }  */
     }
 }
