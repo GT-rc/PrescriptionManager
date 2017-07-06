@@ -33,7 +33,7 @@ namespace PrescriptionManager.ViewModels
 
         public string PrescribingDoctor { get; set; }
 
-        public int ScripNumber { get; set; }
+        public string ScripNumber { get; set; }
 
         public string Pharmacy { get; set; }
 
