@@ -166,5 +166,24 @@ namespace PrescriptionManager.Controllers
         }
         
         // TODO: Create methods and logic for printing out list of meds.
+        public IActionResult Print()
+        {
+            ApplicationUser userLoggedIn;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                userLoggedIn = context.Users.Single(c => c.UserName == userName);
+
+            }
+            else
+            {
+                return Redirect("/");
+            }
+
+            IList<Medication> userMeds = context.Medication.Where(c => c.UserID == userLoggedIn.Id).ToList();
+
+            return View(userMeds);
+        }
     }
 }
