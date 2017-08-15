@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-PrescriptionManager-c87cc88a-243c-44e8-a2aa-90c5ef951aa0",
 
   "dependencies": {
@@ -41,10 +41,13 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "MailKit": "1.18.0",
+    "Microsoft.AspNetCore.Session": "1.0.1",
+    "Microsoft.AspNetCore.Rewrite": "1.0.2"
   },
 
   "tools": {

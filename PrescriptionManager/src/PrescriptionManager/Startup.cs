@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using PrescriptionManager.Data;
 using PrescriptionManager.Models;
 using PrescriptionManager.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace PrescriptionManager
 {
@@ -54,6 +56,20 @@ namespace PrescriptionManager
 
             services.AddMvc();
 
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.CookieHttpOnly = true;
+            });
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+
             var connection = @"Server=(localdb)\mssqllocaldb;Database=aspnet-PrescriptionManager-c87cc88a-243c-44e8-a2aa-90c5ef951aa0;Trusted_Connection=True;";
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
 
@@ -67,6 +83,10 @@ namespace PrescriptionManager
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var options = new RewriteOptions().AddRedirectToHttps();
+
+            app.UseRewriter(options);
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -88,6 +108,8 @@ namespace PrescriptionManager
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
