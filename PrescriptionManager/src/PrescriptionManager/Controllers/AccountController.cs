@@ -117,6 +117,8 @@ namespace PrescriptionManager.Controllers
                         $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
 
                     // TODO if sessions doesn't work, add tempdata
+                    TempData["Message"] = "Confirmation Email has been send to your email. Please check email.";
+                    TempData["MessageValue"] = "1";
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
