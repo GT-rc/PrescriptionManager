@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6636AB4A-6D48-4199-9EC9-F23EDA5BE722}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD4CE150-D346-40BD-86ED-0DCB697856BD}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PrescriptionManager", "src\PrescriptionManager\PrescriptionManager.xproj", "{B3DD19A2-8C3A-4705-BB6C-675F35A0E69F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrescriptionManager", "src\PrescriptionManager\PrescriptionManager.csproj", "{B3DD19A2-8C3A-4705-BB6C-675F35A0E69F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,5 +25,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B3DD19A2-8C3A-4705-BB6C-675F35A0E69F} = {6636AB4A-6D48-4199-9EC9-F23EDA5BE722}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09179A0A-687B-4B67-B9E1-991EF5826B7D}
 	EndGlobalSection
 EndGlobal
