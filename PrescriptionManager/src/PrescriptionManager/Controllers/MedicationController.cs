@@ -55,9 +55,9 @@ namespace PrescriptionManager.Controllers
         public IActionResult Add()
         {
             // query for the list of ToD's and pass into the view model
-            IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
+            // IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
             
-            AddMedViewModel addMedViewModel = new AddMedViewModel(times);
+            AddMedViewModel addMedViewModel = new AddMedViewModel();
 
             return View(addMedViewModel);
         }
@@ -77,15 +77,15 @@ namespace PrescriptionManager.Controllers
                 {
                     Name = addMedViewModel.Name,
                     Dosage = addMedViewModel.Dosage,
-                    //TimesXDay = addMedViewModel.TimesXDay,
+                    TimesXDay = addMedViewModel.TimesXDay,
                     Notes = addMedViewModel.Notes,
-                    TimeOfDay = addMedViewModel.SelectedTime,
-                    Description = addMedViewModel.Description,
+                    //TimeOfDay = addMedViewModel.SelectedTime,
+                    //Description = addMedViewModel.Description,
                     RefillRate = addMedViewModel.RefillRate,
-                    PrescribingDoctor = addMedViewModel.PrescribingDoctor,
-                    ScripNumber = addMedViewModel.ScripNumber,
-                    Pharmacy = addMedViewModel.Pharmacy,
-                    PillsPerDose = addMedViewModel.PillsPerDose,
+                    //PrescribingDoctor = addMedViewModel.PrescribingDoctor,
+                    //ScripNumber = addMedViewModel.ScripNumber,
+                    //Pharmacy = addMedViewModel.Pharmacy,
+                    //PillsPerDose = addMedViewModel.PillsPerDose,
                     UserID = userLoggedIn.Id
                 };
 
@@ -135,9 +135,9 @@ namespace PrescriptionManager.Controllers
         {
             Medication med = context.Medication.Single(c => c.ID == id);
 
-            IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
+            // IEnumerable<ToD> times = (ToD[])Enum.GetValues(typeof(ToD));
 
-            EditMedViewModel editMedViewModel = new EditMedViewModel(med, times);
+            EditMedViewModel editMedViewModel = new EditMedViewModel(med);
             return View(editMedViewModel);
         }
 
@@ -149,14 +149,14 @@ namespace PrescriptionManager.Controllers
             editedMed.Name = editMedViewModel.Med.Name;
             editedMed.Dosage = editMedViewModel.Med.Dosage;
             editedMed.Notes = editMedViewModel.Med.Notes;
-            //editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
-            editedMed.TimeOfDay = editMedViewModel.SelectedTime;
-            editedMed.Description = editMedViewModel.Med.Description;
+            editedMed.TimesXDay = editMedViewModel.Med.TimesXDay;
+            //editedMed.TimeOfDay = editMedViewModel.SelectedTime;
+            //editedMed.Description = editMedViewModel.Med.Description;
             editedMed.RefillRate = editMedViewModel.Med.RefillRate;
-            editedMed.Pharmacy = editMedViewModel.Med.Pharmacy;
-            editedMed.PrescribingDoctor = editMedViewModel.Med.PrescribingDoctor;
-            editedMed.ScripNumber = editMedViewModel.Med.ScripNumber;
-            editedMed.PillsPerDose = editMedViewModel.Med.PillsPerDose;
+            //editedMed.Pharmacy = editMedViewModel.Med.Pharmacy;
+            //editedMed.PrescribingDoctor = editMedViewModel.Med.PrescribingDoctor;
+            //editedMed.ScripNumber = editMedViewModel.Med.ScripNumber;
+            //editedMed.PillsPerDose = editMedViewModel.Med.PillsPerDose;
 
             // update change and save to db
             context.Medication.Update(editedMed);

@@ -19,16 +19,16 @@ namespace PrescriptionManager.ViewModels
         [Display(Name = "Dosage")]
         public int Dosage { get; set; }
 
-        public int PillsPerDose { get; set; }
-        /*
+        // public int PillsPerDose { get; set; }
+        
         [Required]
-        [Display(Name = "Number of Times per Day Taken")]
+        [Display(Name = "Number of Times Taken Per Day")]
         public int TimesXDay { get; set; }
-        */
+        
         public string Notes { get; set; }
 
         public int RefillRate { get; set; }
-
+        /*
         public string Description { get; set; }
 
         public string PrescribingDoctor { get; set; }
@@ -44,9 +44,9 @@ namespace PrescriptionManager.ViewModels
         public List<SelectListItem> ToDay { get; set; }
 
         public ToD SelectedTime { get; set; }
-
+        */
         public AddMedViewModel() : base() { }
-
+        /*
         public AddMedViewModel(IEnumerable<ToD> times)
         {
             ToDay = new List<SelectListItem>();
@@ -59,6 +59,6 @@ namespace PrescriptionManager.ViewModels
                     Text = time.ToString()
                 });
             }
-        }
+        }*/
     }
 }

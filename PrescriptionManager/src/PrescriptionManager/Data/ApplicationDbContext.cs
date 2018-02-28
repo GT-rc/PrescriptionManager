@@ -13,7 +13,10 @@ namespace PrescriptionManager.Data
         public new DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Medication> Medication { get; set; }
         public DbSet<UserMeds> UserMeds { get; set; }
+        public DbSet<Dose> Doses { get; set; }
         public DbSet<Set> Set { get; set; }
+
+        protected ApplicationDbContext() { }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -28,7 +31,7 @@ namespace PrescriptionManager.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
             builder.Entity<UserMeds>().HasKey(c => new { c.UserId, c.MedID });
-
+            
             // builder.Entity<Set>().HasKey(c => new { c.UserMedID, c.TimeOfDay });
         }
     }

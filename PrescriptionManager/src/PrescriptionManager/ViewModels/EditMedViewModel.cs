@@ -22,17 +22,17 @@ namespace PrescriptionManager.ViewModels
         public string PrescribingDoctor { get; set; }
 
         public string Pharmacy { get; set; }
-        */
+        
         public List<SelectListItem> Times { get; set; }
 
         public ToD SelectedTime { get; set; }
-
+        */
         public EditMedViewModel() : base() { }
 
-        public EditMedViewModel(Medication med, IEnumerable<ToD> times)
+        public EditMedViewModel(Medication med)
         {
             Med = med;
-
+            /* for other var: , IEnumerable<ToD> times
             Times = new List<SelectListItem>();
 
             foreach (ToD time in times)
@@ -42,7 +42,7 @@ namespace PrescriptionManager.ViewModels
                     Value = time.ToString(),
                     Text = time.ToString()
                 });
-            }
+            } */
         }
     }
 }

@@ -8,36 +8,39 @@ namespace PrescriptionManager.Models
 {
     public class Medication
     {
-        
+        [Key]
         public int ID { get; set; }
-
+        [Required]
         public string Name { get; set; }
 
-        [Range(minimum:0, maximum:100)]
+        [Range(minimum:0, maximum:5000)]
         public int Dosage { get; set; }
 
         public string Notes { get; set; }
+        
+        public int TimesXDay { get; set; }
 
-        // public int TimesXDay { get; set; }
+        [Range(minimum: 0, maximum: 300)]
+        public int RefillRate { get; set; }  // number of pills in the bottle
 
+        [Required]
+        public string UserID { get; set; }
+
+        /*  -- refactoring out into another model
         [Range(minimum: 0, maximum: 100)]
         public int PillsPerDose { get; set; }
 
         public ToD TimeOfDay { get; set; }
+        */
+        // public string Description { get; set; } -- removing
 
-        public string Description { get; set; }
-
-        [Range(minimum: 0, maximum: 1000)]
-        public int RefillRate { get; set; }  // number of pills in the bottle
-
+        /*
         public string PrescribingDoctor { get; set; }
-
+        
         public string ScripNumber { get; set; }
-
+          --- move to other model ---
         public string Pharmacy { get; set; }
-
-        [Required]
-        public string UserID { get; set; }
+        */
 
         /*
         public override string ToString()
